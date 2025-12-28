@@ -7,146 +7,178 @@
   <meta name="description" content="StrongHER is an 8-week gym-based strength program designed for women who want to build muscle, get stronger, and feel confident in the gym." />
   <style>
     :root{
-      /* Kahunas-like light UI skin */
+      /* Kahunas-ish light UI */
       --bg:#f7f8fb;
-      --card:#ffffff;
+      --panel:#ffffff;
       --border:rgba(17,24,39,.12);
       --text:#111827;
       --muted:rgba(17,24,39,.68);
-      --accent:#2563eb; /* blue */
-      --shadow:0 8px 24px rgba(17,24,39,.08);
-      --radius:16px;
+      --muted2:rgba(17,24,39,.55);
+      --accent:#2563eb;         /* Kahunas-like blue */
+      --accentSoft:rgba(37,99,235,.10);
+      --shadow:0 10px 28px rgba(17,24,39,.08);
+      --radius:18px;
       --max:1080px;
+
+      --h1:clamp(32px,4.2vw,54px);
+      --h2:20px;
+      --body:16px;
+      --small:13px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
       background:var(--bg);
-      line-height:1.35;
+      color:var(--text);
+      line-height:1.45;
     }
     a{color:inherit}
 
-    /* FULL-WIDTH PAGE WRAP (embed friendly) */
-    .wrap{width:100%;margin:0;padding:0 0 90px}
-    .container{max-width:var(--max);margin:0 auto;padding:22px 18px 0}
+    .wrap{width:100%; margin:0; padding:0 0 88px}
+    .container{max-width:var(--max); margin:0 auto; padding:22px 18px 0}
 
-    /* FULL-WIDTH HERO */
+    /* Full-width hero (no image) */
     .hero{
-      position:relative;
       width:100%;
-      overflow:hidden;
-      min-height:520px;
-      isolation:isolate;
-      background:#000;
-      border-radius:0;
-      border:none;
-      box-shadow:none;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg,#fff 0%, rgba(255,255,255,.82) 100%);
     }
-
-    /* Uses repo image: header-bg.png (or replace with your URL) */
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:url("header-bg.png") center/cover no-repeat;
-      transform:scale(1.02);
-      filter:saturate(1.02) contrast(1.02) brightness(.95);
-      z-index:0;
-    }
-
-    /* Light overlay so dark text reads well + matches Kahunas */
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      z-index:1;
-      background:linear-gradient(
-        90deg,
-        rgba(247,248,251,.92) 0%,
-        rgba(247,248,251,.86) 46%,
-        rgba(247,248,251,.55) 75%,
-        rgba(247,248,251,.18) 100%
-      );
-    }
-
     .hero-inner{
-      position:relative;
-      z-index:2;
-      padding:44px 26px;
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:18px;
-      align-items:end;
-      min-height:520px;
       max-width:var(--max);
       margin:0 auto;
+      padding:36px 18px 26px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:start;
     }
 
     .badge{
-      display:inline-flex;gap:10px;align-items:center;
-      padding:10px 14px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 12px;
       border:1px solid var(--border);
       border-radius:999px;
-      background:rgba(255,255,255,.70);
-      color:rgba(17,24,39,.78);
+      background:#fff;
+      color:var(--muted);
       font-weight:800;
-      backdrop-filter:blur(8px);
       width:fit-content;
+      font-size:var(--small);
     }
 
     h1{
       margin:14px 0 10px;
-      font-size:clamp(34px,4.3vw,56px);
-      line-height:1.05;
+      font-size:var(--h1);
+      line-height:1.08;
       letter-spacing:-.4px;
-      color:var(--text);
     }
 
     .sub{
-      margin:0 0 18px;
-      font-size:clamp(16px,1.7vw,20px);
+      margin:0 0 14px;
+      font-size:var(--body);
       color:var(--muted);
       max-width:60ch;
     }
 
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
 
     .btn{
       display:inline-flex;
-      justify-content:center;align-items:center;gap:10px;
-      padding:14px 18px;
+      justify-content:center;
+      align-items:center;
+      padding:12px 16px;
       border-radius:12px;
       border:1px solid var(--accent);
-      text-decoration:none;
-      font-weight:800;
-      letter-spacing:.15px;
       background:var(--accent);
       color:#fff;
-      box-shadow:none;
-      cursor:pointer;
+      font-weight:850;
+      text-decoration:none;
+      letter-spacing:.15px;
+      white-space:nowrap;
     }
     .btn.secondary{
       background:#fff;
       color:var(--text);
       border:1px solid var(--border);
+      font-weight:800;
     }
 
-    .mini{font-size:13.5px;color:rgba(17,24,39,.70);margin-top:10px}
-    .tiny{font-size:12.5px;color:rgba(17,24,39,.60);margin-top:6px}
+    .meta{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:var(--small);
+    }
 
+    /* Card system */
     .card{
-      padding:18px;
-      border-radius:var(--radius);
+      background:var(--panel);
       border:1px solid var(--border);
-      background:var(--card);
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
+      padding:18px;
     }
-    .hero-card{align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end}
 
-    h2{margin:0 0 10px;font-size:20px;color:var(--text)}
-    .list{margin:0;padding-left:18px;color:rgba(17,24,39,.72)}
-    .list li{margin:8px 0}
+    /* Right hero card (clean, no clutter) */
+    .hero-card h2{margin:0 0 10px; font-size:var(--h2)}
+    .list{margin:0; padding-left:18px; color:var(--muted)}
+    .list li{margin:8px 0; font-size:15px}
 
+    /* Pricing (simple, less busy) */
+    .price{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    .price .label{
+      font-size:var(--small);
+      color:var(--muted2);
+      font-weight:800;
+      margin-right:6px;
+    }
+    .price .was{
+      color:rgba(17,24,39,.45);
+      text-decoration:line-through;
+      font-weight:850;
+    }
+    .price .now{
+      font-size:30px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+    .price .tag{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--accentSoft);
+      border:1px solid rgba(37,99,235,.22);
+      color:rgba(37,99,235,.95);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .value-line{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:var(--small);
+      line-height:1.4;
+    }
+
+    /* Main sections */
     .grid{
       display:grid;
       grid-template-columns:repeat(12,1fr);
@@ -155,80 +187,63 @@
     }
     .col6{grid-column:span 6}
     .col12{grid-column:span 12}
+    h2{margin:0 0 10px; font-size:var(--h2)}
+    .muted{color:var(--muted); margin:0; font-size:15px; line-height:1.45}
 
-    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid var(--border);
+    /* Phases */
+    .phases{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px}
+    .phase{
       background:#fff;
-      color:rgba(17,24,39,.70);
-      font-weight:800;
-      white-space:nowrap;
-    }
-
-    .pricebox{
-      margin-top:12px;
+      border:1px solid var(--border);
+      border-radius:16px;
       padding:14px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:var(--shadow);
+      box-shadow:none;
     }
-    .price-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .price-label{font-weight:900;letter-spacing:.2px;color:rgba(17,24,39,.80)}
-    .price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-    .was{color:rgba(17,24,39,.45);text-decoration:line-through;font-weight:900}
-    .now{font-size:32px;font-weight:1000;letter-spacing:-.6px;color:var(--text)}
-    .tag{
-      display:inline-flex;
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(37,99,235,.10);
-      border:1px solid rgba(37,99,235,.22);
-      font-weight:900;
-      color:rgba(37,99,235,.95);
-      white-space:nowrap;
+    .phase h3{margin:0 0 6px; font-size:15px}
+    .phase p{margin:0; color:var(--muted); font-size:14px; line-height:1.4}
+
+    /* FAQ */
+    .faq-item{border-top:1px solid rgba(17,24,39,.10); padding-top:12px; margin-top:12px}
+    .q{margin:0 0 6px; font-weight:900}
+    .a{margin:0; color:var(--muted); font-size:15px}
+
+    /* Final */
+    .final{ text-align:center; padding:22px }
+    .footer{
+      margin-top:22px;
+      text-align:center;
+      color:rgba(17,24,39,.55);
+      font-size:12.5px;
     }
-    .value-line{margin-top:10px;color:rgba(17,24,39,.70);font-size:13.5px;line-height:1.35}
-
-    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .phase h3{margin:0 0 6px;font-size:16px;color:var(--text)}
-    .phase p{margin:0;color:rgba(17,24,39,.68);font-size:14px;line-height:1.35}
-
-    .faq-item{border-top:1px solid rgba(17,24,39,.10);padding-top:12px;margin-top:12px}
-    .q{font-weight:900;margin:0 0 6px;color:var(--text)}
-    .a{margin:0;color:rgba(17,24,39,.70)}
-
-    .final{margin-top:18px;text-align:center;padding:24px}
-    .final p{margin:0 0 14px;color:rgba(17,24,39,.70)}
-
-    .footer{margin-top:22px;text-align:center;color:rgba(17,24,39,.55);font-size:12.5px}
 
     /* Sticky CTA */
     .sticky{
-      position:fixed;left:0;right:0;bottom:0;
-      padding:12px 14px;
-      background:rgba(247,248,251,.92);
+      position:fixed;
+      left:0; right:0; bottom:0;
+      padding:10px 12px;
+      background:rgba(247,248,251,.94);
       border-top:1px solid rgba(17,24,39,.12);
-      backdrop-filter:blur(10px);
-      display:flex;justify-content:center;z-index:999;
+      backdrop-filter: blur(10px);
+      display:flex;
+      justify-content:center;
+      z-index:999;
     }
     .sticky-inner{
       width:min(var(--max),100%);
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
       padding:0 6px;
     }
-    .sticky-title{font-weight:900;letter-spacing:.2px;color:var(--text)}
-    .sticky-sub{color:rgba(17,24,39,.65);font-size:12.5px;margin-top:3px}
-    .sticky-left{display:flex;flex-direction:column}
+    .sticky-left{display:flex; flex-direction:column; gap:2px}
+    .sticky-title{font-weight:950; letter-spacing:.15px}
+    .sticky-sub{font-size:12.5px; color:var(--muted2)}
 
     @media (max-width: 860px){
-      .hero-inner{grid-template-columns:1fr;align-items:start}
+      .hero-inner{grid-template-columns:1fr; padding:28px 18px 18px}
       .col6{grid-column:span 12}
       .phases{grid-template-columns:1fr}
-      .hero{min-height:640px}
-      .hero-inner{min-height:640px}
       .sticky-sub{display:none}
     }
   </style>
@@ -237,31 +252,25 @@
 <body>
   <div class="wrap">
 
+    <!-- HERO (no image, less clutter) -->
     <section class="hero" aria-label="StrongHER header">
       <div class="hero-inner">
         <div>
-          <div class="badge">💪 StrongHER • 8 weeks • Gym-based</div>
-          <h1>Build muscle and feel confident in the gym.</h1>
+          <div class="badge">StrongHER • 8 weeks • Gym-based</div>
+          <h1>Build muscle. Get confident. Feel strong.</h1>
           <p class="sub">
-            StrongHER is an 8-week strength training program designed specifically for women who want a clear plan,
-            real progression, and results you can feel week to week.
+            StrongHER is an 8-week strength program built for women who want a simple plan, real progression,
+            and confidence in the weight room.
           </p>
 
-          <div class="pricebox" aria-label="Pricing">
-            <div class="price-top">
-              <div>
-                <div class="price-label">Limited-time launch pricing</div>
-                <div class="price">
-                  <span class="was">$99</span>
-                  <span class="now">$50</span>
-                  <span class="tag">Save 49%</span>
-                </div>
-              </div>
-            </div>
-            <div class="value-line">
-              8 weeks of training + demo library for every exercise + done-for-you progression.
-              One gym session with a trainer costs more than the entire program.
-            </div>
+          <div class="price" aria-label="Pricing">
+            <span class="label">Launch pricing:</span>
+            <span class="was">$99</span>
+            <span class="now">$50</span>
+            <span class="tag">Save 49%</span>
+          </div>
+          <div class="value-line">
+            Includes 8 weeks of programming + exercise demo library. One personal training session often costs more than the entire program.
           </div>
 
           <div class="cta-row">
@@ -269,14 +278,7 @@
             <a class="btn secondary" href="#included">See what’s included</a>
           </div>
 
-          <div class="mini">3 workouts/week • ~60 minutes • Exercise demos included</div>
-          <div class="tiny">Instant access after purchase (if applicable)</div>
-
-          <div class="pill-row">
-            <span class="pill">✅ Clear structure</span>
-            <span class="pill">✅ Progressive plan</span>
-            <span class="pill">✅ Gym confidence</span>
-          </div>
+          <div class="meta">3 workouts/week • ~60 minutes • Demos included • Beginner-friendly</div>
         </div>
 
         <div class="card hero-card" id="included">
@@ -284,7 +286,7 @@
           <ul class="list">
             <li>8 weeks of progressive training (Foundation → Hypertrophy → Strength)</li>
             <li>3 gym workouts per week (Push / Legs / Pull)</li>
-            <li>Built-in warm-ups + core work</li>
+            <li>Warm-ups + core built in</li>
             <li>Exercise demo library for every movement</li>
             <li>Clear sets, reps, and rest guidance</li>
           </ul>
@@ -297,59 +299,57 @@
 
     <div class="container">
 
-      <!-- REPLACES TESTIMONIALS -->
+      <!-- Trust-building (no testimonials) -->
       <section class="grid" style="margin-top:18px">
         <div class="card col12">
-          <h2>Why this works (and why most people feel stuck)</h2>
-          <ul class="list">
-            <li><strong>Structure beats motivation.</strong> You’re not deciding what to do each day—you follow the plan.</li>
-            <li><strong>Progression is built in.</strong> Each phase builds on the last so you can actually measure progress.</li>
-            <li><strong>Demos remove confusion.</strong> You always know what to do (and how to do it).</li>
-          </ul>
+          <h2>Why this works</h2>
+          <p class="muted">
+            Most women don’t need “more workouts.” They need a plan that removes guesswork.
+            StrongHER gives you structure, built-in progression, and exercise demos so you can walk into the gym knowing exactly what to do.
+          </p>
           <div class="cta-row" style="margin-top:14px">
             <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
           </div>
         </div>
       </section>
 
+      <!-- Who it's for / Outcomes -->
       <section class="grid">
         <div class="card col6">
           <h2>This is for you if…</h2>
           <ul class="list">
-            <li>You have basic gym access (dumbbells + common machines/cables)</li>
-            <li>You want muscle + strength (not just “sweaty workouts”)</li>
-            <li>You want a plan that removes decision fatigue</li>
+            <li>You have basic gym access (dumbbells + common machines)</li>
+            <li>You want muscle + strength (not random “sweaty” workouts)</li>
+            <li>You want a plan that tells you exactly what to do</li>
             <li>You want to feel confident in the weight room</li>
           </ul>
-          <div class="cta-row" style="margin-top:14px">
-            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
-          </div>
         </div>
 
         <div class="card col6">
           <h2>What changes in 8 weeks</h2>
           <ul class="list">
             <li>More confidence walking into the gym</li>
-            <li>Better form and stronger foundational lifts</li>
+            <li>Better form + stronger foundational lifts</li>
             <li>Progress you can track week to week</li>
             <li>A routine you can stick to</li>
           </ul>
         </div>
       </section>
 
+      <!-- Program structure -->
       <section class="grid">
         <div class="card col12">
           <h2>How the 8 weeks are structured</h2>
-          <div class="phases" style="margin-top:10px">
-            <div class="card phase">
+          <div class="phases">
+            <div class="phase">
               <h3>Phase 1: Foundation (Weeks 1–2)</h3>
               <p>Movement quality, confidence, and consistency.</p>
             </div>
-            <div class="card phase">
+            <div class="phase">
               <h3>Phase 2: Hypertrophy Basics (Weeks 3–4)</h3>
               <p>Muscle-building volume with clear progression.</p>
             </div>
-            <div class="card phase">
+            <div class="phase">
               <h3>Phase 3: Strength + Hypertrophy (Weeks 5–8)</h3>
               <p>Heavier lifts + higher intensity to finish strong.</p>
             </div>
@@ -360,18 +360,19 @@
         </div>
       </section>
 
+      <!-- FAQ -->
       <section class="grid">
         <div class="card col12" id="faq">
           <h2>Quick FAQs</h2>
 
           <div class="faq-item">
             <p class="q">Is this beginner-friendly?</p>
-            <p class="a">Yes. The program is designed to build confidence and progress week by week.</p>
+            <p class="a">Yes. It’s built to progress you week by week with clear guidance and demos.</p>
           </div>
 
           <div class="faq-item">
             <p class="q">Do I need a full gym?</p>
-            <p class="a">Basic gym access is ideal (dumbbells + common machines/cables). Most commercial gyms work.</p>
+            <p class="a">Basic gym access is ideal (dumbbells + common machines). Most commercial gyms work.</p>
           </div>
 
           <div class="faq-item">
@@ -390,12 +391,13 @@
         </div>
       </section>
 
+      <!-- Final CTA -->
       <section class="grid">
         <div class="card col12 final">
           <h2>Ready to train with a real plan?</h2>
-          <p>Structure, progression, and gym confidence — built for women.</p>
+          <p class="muted">Structure, progression, and gym confidence — built for women.</p>
           <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
-          <div class="mini" style="margin-top:10px">Instant access after purchase (if applicable)</div>
+          <div class="meta" style="margin-top:10px">Instant access after purchase (if applicable)</div>
         </div>
       </section>
 
@@ -406,10 +408,11 @@
     </div>
   </div>
 
+  <!-- Sticky CTA bar -->
   <div class="sticky" aria-label="Sticky call to action">
     <div class="sticky-inner">
       <div class="sticky-left">
-        <div class="sticky-title">StrongHER</div>
+        <div class="sticky-title">StrongHER — $50</div>
         <div class="sticky-sub">8 weeks • 3x/week • Gym-based</div>
       </div>
       <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Checkout</a>

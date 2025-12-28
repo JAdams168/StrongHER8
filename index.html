@@ -1,284 +1,418 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>StrongHER — 8-Week Strength Program</title>
-  <meta name="description" content="StrongHER is an 8-week gym-based strength program designed for women who want to build muscle, get stronger, and feel confident in the gym."/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StrongHER — 8-Week Strength Program for Women</title>
+  <meta name="description" content="StrongHER is an 8-week gym-based strength program designed for women who want to build muscle, get stronger, and feel confident in the gym." />
   <style>
     :root{
-      --bg:#f5f7fb;
+      /* Kahunas-like light UI skin */
+      --bg:#f7f8fb;
       --card:#ffffff;
       --border:rgba(17,24,39,.12);
       --text:#111827;
-      --muted:rgba(17,24,39,.72);
-      --accent:#6d28d9; /* purple */
-      --accent2:#2563eb; /* blue */
-      --btn:#111827;
-      --btnText:#ffffff;
+      --muted:rgba(17,24,39,.68);
+      --accent:#2563eb; /* blue */
+      --shadow:0 8px 24px rgba(17,24,39,.08);
       --radius:16px;
-      --shadow:0 14px 40px rgba(17,24,39,.10);
-      --max:520px;
+      --max:1080px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height:1.25;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.35;
     }
     a{color:inherit}
-    .page{min-height:100vh; padding:28px 14px 88px; display:flex; justify-content:center;}
-    .wrap{width:100%; max-width: calc(var(--max) + 40px);}
-    .top{
-      display:flex; align-items:center; justify-content:center;
-      margin-bottom:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      color: rgba(17,24,39,.82);
-      font-weight:800; letter-spacing:.2px;
-    }
-    .logoDot{
-      width:34px; height:34px; border-radius:10px;
-      background: linear-gradient(135deg, rgba(109,40,217,.95), rgba(37,99,235,.95));
-      box-shadow: 0 12px 26px rgba(109,40,217,.18);
-    }
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
+    /* FULL-WIDTH PAGE WRAP (embed friendly) */
+    .wrap{width:100%;margin:0;padding:0 0 90px}
+    .container{max-width:var(--max);margin:0 auto;padding:22px 18px 0}
 
-    /* Optional: subtle header image area (kept minimal so it still “feels app-like”) */
+    /* FULL-WIDTH HERO */
     .hero{
       position:relative;
-      height:140px;
-      background: linear-gradient(135deg, rgba(109,40,217,.10), rgba(37,99,235,.10));
+      width:100%;
+      overflow:hidden;
+      min-height:520px;
+      isolation:isolate;
+      background:#000;
+      border-radius:0;
+      border:none;
+      box-shadow:none;
     }
+
+    /* Uses repo image: header-bg.png (or replace with your URL) */
     .hero::before{
       content:"";
       position:absolute; inset:0;
-      background: url("header-bg.png") center/cover no-repeat;
-      opacity:.22; /* keeps it subtle to match Kahunas vibe */
+      background:url("header-bg.png") center/cover no-repeat;
+      transform:scale(1.02);
+      filter:saturate(1.02) contrast(1.02) brightness(.95);
+      z-index:0;
     }
+
+    /* Light overlay so dark text reads well + matches Kahunas */
     .hero::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 100%);
+      z-index:1;
+      background:linear-gradient(
+        90deg,
+        rgba(247,248,251,.92) 0%,
+        rgba(247,248,251,.86) 46%,
+        rgba(247,248,251,.55) 75%,
+        rgba(247,248,251,.18) 100%
+      );
     }
 
-    .content{padding:18px 18px 16px}
-    .kicker{
-      font-size:13px;
-      color: rgba(17,24,39,.65);
-      font-weight:700;
-      margin: 0 0 8px;
-    }
-    h1{
-      margin:0 0 8px;
-      font-size:26px;
-      letter-spacing:-.3px;
-      line-height:1.1;
-    }
-    .sub{
-      margin:0 0 14px;
-      font-size:14.5px;
-      color: var(--muted);
-      line-height:1.35;
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:44px 26px;
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:18px;
+      align-items:end;
+      min-height:520px;
+      max-width:var(--max);
+      margin:0 auto;
     }
 
-    .priceRow{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(17,24,39,.10);
-      background: rgba(17,24,39,.03);
-      margin: 10px 0 12px;
-    }
-    .priceLeft{display:flex; flex-direction:column; gap:6px}
-    .priceLabel{font-size:13px; font-weight:800; color:rgba(17,24,39,.78)}
-    .price{
-      display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
-    }
-    .was{color:rgba(17,24,39,.45); text-decoration:line-through; font-weight:800}
-    .now{font-size:28px; font-weight:900; letter-spacing:-.4px}
-    .tag{
-      display:inline-flex;
-      padding:7px 10px;
+    .badge{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:10px 14px;
+      border:1px solid var(--border);
       border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      color: rgba(109,40,217,.95);
-      border: 1px solid rgba(109,40,217,.18);
-      background: rgba(109,40,217,.07);
-      white-space:nowrap;
+      background:rgba(255,255,255,.70);
+      color:rgba(17,24,39,.78);
+      font-weight:800;
+      backdrop-filter:blur(8px);
+      width:fit-content;
     }
 
-    .listTitle{
-      font-size:13px;
-      font-weight:900;
-      color:rgba(17,24,39,.80);
-      margin: 12px 0 8px;
-    }
-    ul{margin:0; padding-left:18px; color:rgba(17,24,39,.78)}
-    li{margin:7px 0; font-size:14px; line-height:1.35}
-
-    .divider{height:1px; background:rgba(17,24,39,.10); margin:14px 0}
-
-    .why{
-      border:1px solid rgba(17,24,39,.10);
-      background: rgba(17,24,39,.02);
-      border-radius: 14px;
-      padding:12px;
-    }
-    .why h2{
-      margin:0 0 6px;
-      font-size:14px;
-      letter-spacing:-.1px;
-    }
-    .why p{
-      margin:0;
-      font-size:13.5px;
-      color:rgba(17,24,39,.72);
-      line-height:1.4;
+    h1{
+      margin:14px 0 10px;
+      font-size:clamp(34px,4.3vw,56px);
+      line-height:1.05;
+      letter-spacing:-.4px;
+      color:var(--text);
     }
 
-    .cta{
-      padding: 16px 18px 18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+    .sub{
+      margin:0 0 18px;
+      font-size:clamp(16px,1.7vw,20px);
+      color:var(--muted);
+      max-width:60ch;
     }
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
     .btn{
       display:inline-flex;
-      justify-content:center;
-      align-items:center;
-      padding:14px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(17,24,39,.12);
-      background: var(--btn);
-      color: var(--btnText);
-      font-weight:900;
-      letter-spacing:.2px;
+      justify-content:center;align-items:center;gap:10px;
+      padding:14px 18px;
+      border-radius:12px;
+      border:1px solid var(--accent);
       text-decoration:none;
+      font-weight:800;
+      letter-spacing:.15px;
+      background:var(--accent);
+      color:#fff;
+      box-shadow:none;
+      cursor:pointer;
     }
     .btn.secondary{
       background:#fff;
-      color:#111827;
-    }
-    .fine{
-      font-size:12px;
-      color:rgba(17,24,39,.60);
-      line-height:1.35;
+      color:var(--text);
+      border:1px solid var(--border);
     }
 
-    /* Sticky CTA (mobile-friendly) */
-    .sticky{
-      position:fixed;
-      left:0; right:0; bottom:0;
-      padding:10px 12px;
-      background: rgba(245,247,251,.92);
-      border-top: 1px solid rgba(17,24,39,.12);
-      backdrop-filter: blur(10px);
-      display:flex;
-      justify-content:center;
+    .mini{font-size:13.5px;color:rgba(17,24,39,.70);margin-top:10px}
+    .tiny{font-size:12.5px;color:rgba(17,24,39,.60);margin-top:6px}
+
+    .card{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:var(--card);
+      box-shadow:var(--shadow);
     }
-    .stickyInner{
-      width: min(560px, 100%);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:0 2px;
+    .hero-card{align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end}
+
+    h2{margin:0 0 10px;font-size:20px;color:var(--text)}
+    .list{margin:0;padding-left:18px;color:rgba(17,24,39,.72)}
+    .list li{margin:8px 0}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+      margin-top:18px;
     }
-    .stickyText{display:flex; flex-direction:column; gap:2px}
-    .stickyText strong{font-size:13px}
-    .stickyText span{font-size:12px; color:rgba(17,24,39,.65)}
-    .stickyBtn{
-      padding:12px 14px;
-      border-radius: 12px;
-      background: var(--btn);
-      color:#fff;
+    .col6{grid-column:span 6}
+    .col12{grid-column:span 12}
+
+    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:rgba(17,24,39,.70);
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .pricebox{
+      margin-top:12px;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+    .price-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .price-label{font-weight:900;letter-spacing:.2px;color:rgba(17,24,39,.80)}
+    .price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+    .was{color:rgba(17,24,39,.45);text-decoration:line-through;font-weight:900}
+    .now{font-size:32px;font-weight:1000;letter-spacing:-.6px;color:var(--text)}
+    .tag{
+      display:inline-flex;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.22);
       font-weight:900;
-      text-decoration:none;
-      border:1px solid rgba(17,24,39,.12);
+      color:rgba(37,99,235,.95);
+      white-space:nowrap;
+    }
+    .value-line{margin-top:10px;color:rgba(17,24,39,.70);font-size:13.5px;line-height:1.35}
+
+    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .phase h3{margin:0 0 6px;font-size:16px;color:var(--text)}
+    .phase p{margin:0;color:rgba(17,24,39,.68);font-size:14px;line-height:1.35}
+
+    .faq-item{border-top:1px solid rgba(17,24,39,.10);padding-top:12px;margin-top:12px}
+    .q{font-weight:900;margin:0 0 6px;color:var(--text)}
+    .a{margin:0;color:rgba(17,24,39,.70)}
+
+    .final{margin-top:18px;text-align:center;padding:24px}
+    .final p{margin:0 0 14px;color:rgba(17,24,39,.70)}
+
+    .footer{margin-top:22px;text-align:center;color:rgba(17,24,39,.55);font-size:12.5px}
+
+    /* Sticky CTA */
+    .sticky{
+      position:fixed;left:0;right:0;bottom:0;
+      padding:12px 14px;
+      background:rgba(247,248,251,.92);
+      border-top:1px solid rgba(17,24,39,.12);
+      backdrop-filter:blur(10px);
+      display:flex;justify-content:center;z-index:999;
+    }
+    .sticky-inner{
+      width:min(var(--max),100%);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:0 6px;
+    }
+    .sticky-title{font-weight:900;letter-spacing:.2px;color:var(--text)}
+    .sticky-sub{color:rgba(17,24,39,.65);font-size:12.5px;margin-top:3px}
+    .sticky-left{display:flex;flex-direction:column}
+
+    @media (max-width: 860px){
+      .hero-inner{grid-template-columns:1fr;align-items:start}
+      .col6{grid-column:span 12}
+      .phases{grid-template-columns:1fr}
+      .hero{min-height:640px}
+      .hero-inner{min-height:640px}
+      .sticky-sub{display:none}
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <div class="wrap">
+  <div class="wrap">
 
-      <div class="top">
-        <div class="brand">
-          <div class="logoDot"></div>
-          <div>JulieAdamsFitness</div>
-        </div>
-      </div>
+    <section class="hero" aria-label="StrongHER header">
+      <div class="hero-inner">
+        <div>
+          <div class="badge">💪 StrongHER • 8 weeks • Gym-based</div>
+          <h1>Build muscle and feel confident in the gym.</h1>
+          <p class="sub">
+            StrongHER is an 8-week strength training program designed specifically for women who want a clear plan,
+            real progression, and results you can feel week to week.
+          </p>
 
-      <div class="card">
-        <div class="hero"></div>
-
-        <div class="content">
-          <p class="kicker">Welcome — you’re one step away</p>
-          <h1>StrongHER (8 Weeks)</h1>
-          <p class="sub">A gym-based strength program designed for women who want a clear plan, real progression, and confidence in the weight room.</p>
-
-          <div class="priceRow" aria-label="Pricing">
-            <div class="priceLeft">
-              <div class="priceLabel">Launch pricing (limited-time)</div>
-              <div class="price">
-                <span class="was">$99</span>
-                <span class="now">$50</span>
-                <span class="tag">Save 49%</span>
+          <div class="pricebox" aria-label="Pricing">
+            <div class="price-top">
+              <div>
+                <div class="price-label">Limited-time launch pricing</div>
+                <div class="price">
+                  <span class="was">$99</span>
+                  <span class="now">$50</span>
+                  <span class="tag">Save 49%</span>
+                </div>
               </div>
+            </div>
+            <div class="value-line">
+              8 weeks of training + demo library for every exercise + done-for-you progression.
+              One gym session with a trainer costs more than the entire program.
             </div>
           </div>
 
-          <div class="listTitle">What you get</div>
-          <ul>
-            <li>8 weeks of structured progression (Foundation → Build → Strength)</li>
-            <li>3 workouts/week (Push • Legs • Pull) — ~60 minutes each</li>
-            <li>Warm-ups + core included</li>
-            <li>Exercise demo library so you always know what to do</li>
+          <div class="cta-row">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+            <a class="btn secondary" href="#included">See what’s included</a>
+          </div>
+
+          <div class="mini">3 workouts/week • ~60 minutes • Exercise demos included</div>
+          <div class="tiny">Instant access after purchase (if applicable)</div>
+
+          <div class="pill-row">
+            <span class="pill">✅ Clear structure</span>
+            <span class="pill">✅ Progressive plan</span>
+            <span class="pill">✅ Gym confidence</span>
+          </div>
+        </div>
+
+        <div class="card hero-card" id="included">
+          <h2>What you get</h2>
+          <ul class="list">
+            <li>8 weeks of progressive training (Foundation → Hypertrophy → Strength)</li>
+            <li>3 gym workouts per week (Push / Legs / Pull)</li>
+            <li>Built-in warm-ups + core work</li>
+            <li>Exercise demo library for every movement</li>
+            <li>Clear sets, reps, and rest guidance</li>
           </ul>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Get Instant Access</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="divider"></div>
+    <div class="container">
 
-          <div class="why">
-            <h2>Why this works</h2>
-            <p><strong>Structure beats motivation.</strong> You stop guessing and follow a plan. <strong>Progression is built in</strong> so you can track strength week to week. <strong>Demos remove confusion</strong> and help you feel confident in the gym.</p>
+      <!-- REPLACES TESTIMONIALS -->
+      <section class="grid" style="margin-top:18px">
+        <div class="card col12">
+          <h2>Why this works (and why most people feel stuck)</h2>
+          <ul class="list">
+            <li><strong>Structure beats motivation.</strong> You’re not deciding what to do each day—you follow the plan.</li>
+            <li><strong>Progression is built in.</strong> Each phase builds on the last so you can actually measure progress.</li>
+            <li><strong>Demos remove confusion.</strong> You always know what to do (and how to do it).</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card col6">
+          <h2>This is for you if…</h2>
+          <ul class="list">
+            <li>You have basic gym access (dumbbells + common machines/cables)</li>
+            <li>You want muscle + strength (not just “sweaty workouts”)</li>
+            <li>You want a plan that removes decision fatigue</li>
+            <li>You want to feel confident in the weight room</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
           </div>
         </div>
 
-        <div class="cta">
+        <div class="card col6">
+          <h2>What changes in 8 weeks</h2>
+          <ul class="list">
+            <li>More confidence walking into the gym</li>
+            <li>Better form and stronger foundational lifts</li>
+            <li>Progress you can track week to week</li>
+            <li>A routine you can stick to</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card col12">
+          <h2>How the 8 weeks are structured</h2>
+          <div class="phases" style="margin-top:10px">
+            <div class="card phase">
+              <h3>Phase 1: Foundation (Weeks 1–2)</h3>
+              <p>Movement quality, confidence, and consistency.</p>
+            </div>
+            <div class="card phase">
+              <h3>Phase 2: Hypertrophy Basics (Weeks 3–4)</h3>
+              <p>Muscle-building volume with clear progression.</p>
+            </div>
+            <div class="card phase">
+              <h3>Phase 3: Strength + Hypertrophy (Weeks 5–8)</h3>
+              <p>Heavier lifts + higher intensity to finish strong.</p>
+            </div>
+          </div>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card col12" id="faq">
+          <h2>Quick FAQs</h2>
+
+          <div class="faq-item">
+            <p class="q">Is this beginner-friendly?</p>
+            <p class="a">Yes. The program is designed to build confidence and progress week by week.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="q">Do I need a full gym?</p>
+            <p class="a">Basic gym access is ideal (dumbbells + common machines/cables). Most commercial gyms work.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="q">How long are the workouts?</p>
+            <p class="a">About 60 minutes, 3 days per week.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="q">Is coaching included?</p>
+            <p class="a">StrongHER is self-guided. If you want 1:1 coaching, message Julie on Instagram.</p>
+          </div>
+
+          <div class="cta-row" style="margin-top:16px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card col12 final">
+          <h2>Ready to train with a real plan?</h2>
+          <p>Structure, progression, and gym confidence — built for women.</p>
           <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
-          <a class="btn secondary" href="#faq">Quick FAQs</a>
-          <div class="fine" id="faq">
-            Beginner-friendly. Requires basic gym access. Results vary by individual.
-          </div>
+          <div class="mini" style="margin-top:10px">Instant access after purchase (if applicable)</div>
         </div>
+      </section>
+
+      <div class="footer">
+        Disclaimer: Results vary by individual. Consult a professional if you have medical concerns.
       </div>
 
     </div>
   </div>
 
   <div class="sticky" aria-label="Sticky call to action">
-    <div class="stickyInner">
-      <div class="stickyText">
-        <strong>StrongHER — $50</strong>
-        <span>8 weeks • 3x/week • Gym-based</span>
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <div class="sticky-title">StrongHER</div>
+        <div class="sticky-sub">8 weeks • 3x/week • Gym-based</div>
       </div>
-      <a class="stickyBtn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Checkout</a>
+      <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Checkout</a>
     </div>
   </div>
 </body>

@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StrongHER — 8-Week Strength Program for Women</title>
+  <meta name="description" content="StrongHER is an 8-week gym-based strength program designed for women who want to build muscle, get stronger, and feel confident in the gym." />
+  <style>
+    :root{
+      --bg:#0b0b12;
+      --card:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.14);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.82);
+      --accent:#ff3ea5;
+      --accent2:#7c4dff;
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius:22px;
+      --max:1080px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 20% 0%, rgba(124,77,255,.25), transparent 55%),
+        radial-gradient(900px 650px at 90% 10%, rgba(255,62,165,.22), transparent 55%),
+        var(--bg);
+      line-height:1.25;
+    }
+    a{color:inherit}
+
+    /* EMBED-FRIENDLY FULL WIDTH:
+       Many "embed" containers add their own padding/background.
+       This keeps hero full-width while sections stay readable. */
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:22px 18px 90px;
+    }
+
+    /* --- HERO (UPDATED FOR EMBEDS) --- */
+    .hero{
+      position:relative;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      min-height:420px;
+
+      /* Key embed fixes: */
+      isolation:isolate;  /* ensures ::before/::after layer correctly in iframes */
+      background:#000;    /* prevents white wash/flash under image inside embeds */
+    }
+
+    /* Replace the URL below with your hosted header image */
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:url("YOUR_HEADER_IMAGE_URL_HERE") center/cover no-repeat;
+      transform:scale(1.02);
+
+      /* Slightly darker to counter embed washout */
+      filter:saturate(1.05) contrast(1.08) brightness(.92);
+      z-index:0;
+    }
+
+    /* Dark overlay that survives iframe/white embed containers */
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      z-index:1;
+      background:linear-gradient(90deg,
+        rgba(0,0,0,.78) 0%,
+        rgba(0,0,0,.58) 45%,
+        rgba(0,0,0,.28) 75%,
+        rgba(0,0,0,.08) 100%);
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:44px 26px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:end;
+      min-height:420px;
+      color:var(--text);
+    }
+
+    .badge{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+
+      /* Updated for contrast on dark overlay */
+      background:rgba(0,0,0,.25);
+      color:rgba(255,255,255,.92);
+
+      font-weight:700;
+      backdrop-filter: blur(8px);
+      width:fit-content;
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size:clamp(34px,4.3vw,56px);
+      line-height:1.05;
+      letter-spacing:-.4px;
+
+      /* Added for readability on busy images */
+      text-shadow: 0 6px 22px rgba(0,0,0,.55);
+    }
+
+    .sub{
+      margin:0 0 18px;
+      font-size:clamp(16px,1.7vw,20px);
+      color:var(--muted);
+      max-width:55ch;
+      text-shadow: 0 6px 22px rgba(0,0,0,.45);
+    }
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
+    .btn{
+      display:inline-flex;
+      justify-content:center; align-items:center; gap:10px;
+      padding:14px 18px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:.2px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 12px 30px rgba(255,62,165,.20);
+      cursor:pointer;
+    }
+    .btn.secondary{
+      background:rgba(255,255,255,.06);
+      box-shadow:none;
+      font-weight:750;
+      color:var(--muted);
+    }
+    .mini{font-size:14px;color:var(--muted);margin-top:10px}
+
+    .card{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:var(--card);
+      backdrop-filter: blur(10px);
+    }
+    .hero-card{align-self:stretch; display:flex; flex-direction:column; justify-content:flex-end}
+    h2{margin:0 0 10px;font-size:22px}
+    .list{margin:0;padding-left:18px;color:var(--muted)}
+    .list li{margin:8px 0}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .col6{grid-column:span 6}
+    .col12{grid-column:span 12}
+    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);font-weight:700;
+      white-space:nowrap;
+    }
+    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .phase h3{margin:0 0 6px;font-size:18px}
+    .phase p{margin:0;color:var(--muted)}
+    .faq-item{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding-top:12px;margin-top:12px
+    }
+    .q{font-weight:900;margin:0 0 6px}
+    .a{margin:0;color:var(--muted)}
+    .final{
+      margin-top:18px;
+      text-align:center;
+      padding:26px;
+    }
+    .final h2{margin-bottom:8px}
+    .final p{margin:0 0 16px;color:var(--muted)}
+    .footer{
+      margin-top:26px;
+      text-align:center;
+      color:rgba(255,255,255,.62);
+      font-size:13px;
+    }
+
+    /* Sticky CTA */
+    .sticky{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      padding:12px 14px;
+      background:rgba(11,11,18,.78);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      display:flex;
+      justify-content:center;
+      z-index:999;
+    }
+    .sticky-inner{
+      width:min(var(--max), 100%);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:0 6px;
+    }
+    .sticky-title{
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .sticky-sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:3px;
+    }
+    .sticky-left{display:flex;flex-direction:column}
+
+    @media (max-width: 860px){
+      .hero-inner{grid-template-columns:1fr;align-items:start}
+
+      /* Mobile overlay: slightly stronger since embeds often wash out */
+      .hero::after{
+        background:linear-gradient(180deg,
+          rgba(0,0,0,.84) 0%,
+          rgba(0,0,0,.62) 42%,
+          rgba(0,0,0,.34) 75%,
+          rgba(0,0,0,.14) 100%);
+      }
+
+      .col6{grid-column:span 12}
+      .phases{grid-template-columns:1fr}
+      .hero{min-height:560px}
+      .hero-inner{min-height:560px}
+      .sticky-sub{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="StrongHER header">
+      <div class="hero-inner">
+        <div>
+          <div class="badge">💪 StrongHER • 8 weeks • Gym-based</div>
+          <h1>Build muscle and feel confident in the gym.</h1>
+          <p class="sub">
+            StrongHER is an 8-week strength training program designed specifically for women who want a clear plan,
+            real progression, and results you can feel week to week.
+          </p>
+
+          <div class="cta-row">
+            <!-- Replace the link below with your checkout link -->
+            <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Start StrongHER</a>
+            <a class="btn secondary" href="#included">See what’s included</a>
+          </div>
+
+          <div class="mini">3 workouts/week • ~60 minutes • Exercise demos included</div>
+
+          <div class="pill-row" style="margin-top:14px">
+            <span class="pill">✅ Clear structure</span>
+            <span class="pill">✅ Progressive plan</span>
+            <span class="pill">✅ Gym confidence</span>
+          </div>
+        </div>
+
+        <!-- “WHAT YOU GET” CARD (right side on desktop) -->
+        <div class="card hero-card" id="included">
+          <h2>What you get</h2>
+          <ul class="list">
+            <li>8 weeks of progressive training (Foundation → Hypertrophy → Strength)</li>
+            <li>3 gym workouts per week (Push / Legs / Pull)</li>
+            <li>Built-in warm-ups + core work</li>
+            <li>Exercise demo library for every movement</li>
+            <li>Clear sets, reps, and rest guidance</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Get Instant Access</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF (optional) -->
+    <section class="grid" style="margin-top:18px">
+      <div class="card col12">
+        <h2>Designed for women who want real strength</h2>
+        <p style="margin:0;color:var(--muted)">
+          Swap these lines with testimonials when you have them:
+          “Finally felt confident using weights.” • “The plan made it so easy to stay consistent.” • “I got stronger week by week.”
+        </p>
+      </div>
+    </section>
+
+    <!-- WHO ITS FOR + OUTCOMES -->
+    <section class="grid">
+      <div class="card col6">
+        <h2>This is for you if…</h2>
+        <ul class="list">
+          <li>You have basic gym access (dumbbells + common machines/cables)</li>
+          <li>You want muscle + strength (not just “sweaty workouts”)</li>
+          <li>You want a plan that removes decision fatigue</li>
+          <li>You want to feel confident in the weight room</li>
+        </ul>
+        <div class="cta-row" style="margin-top:14px">
+          <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Start StrongHER</a>
+        </div>
+      </div>
+
+      <div class="card col6">
+        <h2>What changes in 8 weeks</h2>
+        <ul class="list">
+          <li>More confidence walking into the gym</li>
+          <li>Better form and stronger foundational lifts</li>
+          <li>Progress you can track week to week</li>
+          <li>A routine you can stick to</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROGRAM STRUCTURE -->
+    <section class="grid">
+      <div class="card col12">
+        <h2>How the 8 weeks are structured</h2>
+        <div class="phases" style="margin-top:10px">
+          <div class="card phase">
+            <h3>Phase 1: Foundation (Weeks 1–2)</h3>
+            <p>Movement quality, confidence, and consistency.</p>
+          </div>
+          <div class="card phase">
+            <h3>Phase 2: Hypertrophy Basics (Weeks 3–4)</h3>
+            <p>Muscle-building volume with clear progression.</p>
+          </div>
+          <div class="card phase">
+            <h3>Phase 3: Strength + Hypertrophy (Weeks 5–8)</h3>
+            <p>Heavier lifts + higher intensity to finish strong.</p>
+          </div>
+        </div>
+        <div class="cta-row" style="margin-top:14px">
+          <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Begin StrongHER</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="grid">
+      <div class="card col12" id="faq">
+        <h2>Quick FAQs</h2>
+
+        <div class="faq-item">
+          <p class="q">Is this beginner-friendly?</p>
+          <p class="a">Yes. The program is designed to build confidence and progress week by week.</p>
+        </div>
+
+        <div class="faq-item">
+          <p class="q">Do I need a full gym?</p>
+          <p class="a">Basic gym access is ideal (dumbbells + common machines/cables). Most commercial gyms work.</p>
+        </div>
+
+        <div class="faq-item">
+          <p class="q">How long are the workouts?</p>
+          <p class="a">About 60 minutes, 3 days per week.</p>
+        </div>
+
+        <div class="faq-item">
+          <p class="q">Is coaching included?</p>
+          <p class="a">StrongHER is self-guided. If you want 1:1 coaching, message Julie on Instagram.</p>
+        </div>
+
+        <div class="cta-row" style="margin-top:16px">
+          <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Start StrongHER</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="grid">
+      <div class="card col12 final">
+        <h2>Ready to train with a real plan?</h2>
+        <p>Structure, progression, and gym confidence — built for women.</p>
+        <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Start StrongHER</a>
+        <div class="mini" style="margin-top:10px">Instant access after purchase (if applicable)</div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Disclaimer: Results vary by individual. Consult a professional if you have medical concerns.
+    </div>
+
+  </div>
+
+  <!-- Sticky CTA bar -->
+  <div class="sticky" aria-label="Sticky call to action">
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <div class="sticky-title">StrongHER</div>
+        <div class="sticky-sub">8 weeks • 3x/week • Gym-based</div>
+      </div>
+      <a class="btn" href="YOUR_CHECKOUT_URL_HERE" target="_blank" rel="noopener">Start</a>
+    </div>
+  </div>
+</body>
+</html>

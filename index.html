@@ -37,7 +37,7 @@
     a{color:inherit}
 
     .wrap{width:100%; margin:0; padding:0 0 88px}
-    .container{max-width:var(--max); margin:0 auto; padding:22px 18px 0}
+    .container{max-width:var(--max); margin:0 auto; padding:18px 18px 0}
 
     /* Full-width hero (no image) */
     .hero{
@@ -45,13 +45,15 @@
       border-bottom:1px solid var(--border);
       background:linear-gradient(180deg,#fff 0%, rgba(255,255,255,.82) 100%);
     }
+
+    /* MOBILE FIRST: stack by default */
     .hero-inner{
       max-width:var(--max);
       margin:0 auto;
-      padding:36px 18px 26px;
+      padding:28px 18px 18px;
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
+      grid-template-columns: 1fr;
+      gap:14px;
       align-items:start;
     }
 
@@ -70,14 +72,14 @@
     }
 
     h1{
-      margin:14px 0 10px;
+      margin:12px 0 8px;
       font-size:var(--h1);
       line-height:1.08;
       letter-spacing:-.4px;
     }
 
     .sub{
-      margin:0 0 14px;
+      margin:0 0 12px;
       font-size:var(--body);
       color:var(--muted);
       max-width:60ch;
@@ -85,7 +87,7 @@
 
     .cta-row{
       display:flex;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
       align-items:center;
       margin-top:10px;
@@ -127,12 +129,12 @@
       padding:18px;
     }
 
-    /* Right hero card (clean, no clutter) */
+    /* Right hero card */
     .hero-card h2{margin:0 0 10px; font-size:var(--h2)}
     .list{margin:0; padding-left:18px; color:var(--muted)}
     .list li{margin:8px 0; font-size:15px}
 
-    /* Pricing (simple, less busy) */
+    /* Pricing */
     .price{
       display:flex;
       align-items:baseline;
@@ -178,20 +180,42 @@
       line-height:1.4;
     }
 
-    /* Main sections */
+    /* Main sections - MOBILE FIRST: 1 column by default */
     .grid{
       display:grid;
-      grid-template-columns:repeat(12,1fr);
+      grid-template-columns: 1fr;
       gap:14px;
-      margin-top:18px;
+      margin-top:16px;
     }
-    .col6{grid-column:span 6}
-    .col12{grid-column:span 12}
+    .col6,.col12{grid-column:auto}
+
     h2{margin:0 0 10px; font-size:var(--h2)}
     .muted{color:var(--muted); margin:0; font-size:15px; line-height:1.45}
 
+    /* Images (mobile-first) */
+    .section-image{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      border:1px solid var(--border);
+      box-shadow:0 8px 18px rgba(17,24,39,.08);
+      margin:12px 0 14px;
+      object-fit:cover;
+      background:#fff;
+    }
+
+    /* Two-up split inside a card (image + text) */
+    .split{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .split .section-image{margin:0}
+
     /* Phases */
-    .phases{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px}
+    .phases{display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px}
     .phase{
       background:#fff;
       border:1px solid var(--border);
@@ -240,10 +264,25 @@
     .sticky-title{font-weight:950; letter-spacing:.15px}
     .sticky-sub{font-size:12.5px; color:var(--muted2)}
 
+    /* DESKTOP ENHANCEMENTS */
+    @media (min-width: 861px){
+      .hero-inner{
+        grid-template-columns: 1.25fr .75fr;
+        padding:36px 18px 26px;
+        gap:18px;
+      }
+      .grid{
+        grid-template-columns:repeat(12,1fr);
+        margin-top:18px;
+      }
+      .col6{grid-column:span 6}
+      .col12{grid-column:span 12}
+
+      .phases{grid-template-columns:repeat(3,1fr)}
+      .split{grid-template-columns: 1fr 1.15fr}
+    }
+
     @media (max-width: 860px){
-      .hero-inner{grid-template-columns:1fr; padding:28px 18px 18px}
-      .col6{grid-column:span 12}
-      .phases{grid-template-columns:1fr}
       .sticky-sub{display:none}
     }
   </style>
@@ -299,23 +338,43 @@
 
     <div class="container">
 
-      <!-- Trust-building (no testimonials) -->
+      <!-- Trust-building (no testimonials) + IMAGE -->
       <section class="grid" style="margin-top:18px">
         <div class="card col12">
-          <h2>Why this works</h2>
-          <p class="muted">
-            Most women don’t need “more workouts.” They need a plan that removes guesswork.
-            StrongHER gives you structure, built-in progression, and exercise demos so you can walk into the gym knowing exactly what to do.
-          </p>
-          <div class="cta-row" style="margin-top:14px">
-            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          <div class="split">
+            <!-- IMAGE: RDL -->
+            <img
+              class="section-image"
+              src="images/RDL example.png"
+              alt="Kettlebell RDL demonstration"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <h2>Why this works</h2>
+              <p class="muted">
+                Most women don’t need “more workouts.” They need a plan that removes guesswork.
+                StrongHER gives you structure, built-in progression, and exercise demos so you can walk into the gym knowing exactly what to do.
+              </p>
+              <div class="cta-row" style="margin-top:14px">
+                <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Who it's for / Outcomes -->
+      <!-- Who it's for / Outcomes + IMAGE -->
       <section class="grid">
         <div class="card col6">
+          <!-- IMAGE: Leg Extension -->
+          <img
+            class="section-image"
+            src="images/Leg extension example.jpg"
+            alt="Leg extension demonstration"
+            loading="lazy"
+            decoding="async"
+          />
           <h2>This is for you if…</h2>
           <ul class="list">
             <li>You have basic gym access (dumbbells + common machines)</li>

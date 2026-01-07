@@ -7,23 +7,25 @@
   <meta name="description" content="StrongHER is an 8-week gym-based strength program designed for women who want to build muscle, get stronger, and feel confident in the gym." />
   <style>
     :root{
+      /* Kahunas-ish light UI */
       --bg:#f7f8fb;
       --panel:#ffffff;
       --border:rgba(17,24,39,.12);
       --text:#111827;
       --muted:rgba(17,24,39,.68);
       --muted2:rgba(17,24,39,.55);
-      --accent:#2563eb;
+      --accent:#2563eb;         /* Kahunas-like blue */
       --accentSoft:rgba(37,99,235,.10);
       --shadow:0 10px 28px rgba(17,24,39,.08);
       --radius:18px;
       --max:1080px;
 
-      --h1:clamp(30px,7.2vw,50px);
+      --h1:clamp(32px,4.2vw,54px);
       --h2:20px;
       --body:16px;
       --small:13px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -34,21 +36,23 @@
     }
     a{color:inherit}
 
-    .wrap{width:100%; margin:0; padding:0 0 92px}
-    .container{max-width:var(--max); margin:0 auto; padding:18px 16px 0}
+    .wrap{width:100%; margin:0; padding:0 0 88px}
+    .container{max-width:var(--max); margin:0 auto; padding:18px 18px 0}
 
-    /* Hero */
+    /* Full-width hero (no image) */
     .hero{
       width:100%;
       border-bottom:1px solid var(--border);
       background:linear-gradient(180deg,#fff 0%, rgba(255,255,255,.82) 100%);
     }
+
+    /* MOBILE FIRST: stack by default */
     .hero-inner{
       max-width:var(--max);
       margin:0 auto;
-      padding:28px 16px 18px;
+      padding:28px 18px 18px;
       display:grid;
-      grid-template-columns:1fr;     /* mobile-first */
+      grid-template-columns: 1fr;
       gap:14px;
       align-items:start;
     }
@@ -66,18 +70,21 @@
       width:fit-content;
       font-size:var(--small);
     }
+
     h1{
       margin:12px 0 8px;
       font-size:var(--h1);
       line-height:1.08;
       letter-spacing:-.4px;
     }
+
     .sub{
       margin:0 0 12px;
       font-size:var(--body);
       color:var(--muted);
       max-width:60ch;
     }
+
     .cta-row{
       display:flex;
       gap:10px;
@@ -85,6 +92,7 @@
       align-items:center;
       margin-top:10px;
     }
+
     .btn{
       display:inline-flex;
       justify-content:center;
@@ -105,23 +113,24 @@
       border:1px solid var(--border);
       font-weight:800;
     }
+
     .meta{
       margin-top:10px;
       color:var(--muted2);
       font-size:var(--small);
     }
 
-    /* Cards */
+    /* Card system */
     .card{
       background:var(--panel);
       border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:16px;
+      padding:18px;
     }
-    h2{margin:0 0 10px; font-size:var(--h2)}
-    .muted{color:var(--muted); margin:0; font-size:15px; line-height:1.45}
 
+    /* Right hero card */
+    .hero-card h2{margin:0 0 10px; font-size:var(--h2)}
     .list{margin:0; padding-left:18px; color:var(--muted)}
     .list li{margin:8px 0; font-size:15px}
 
@@ -137,9 +146,22 @@
       border:1px solid var(--border);
       background:#fff;
     }
-    .price .label{font-size:var(--small); color:var(--muted2); font-weight:800; margin-right:6px}
-    .price .was{color:rgba(17,24,39,.45); text-decoration:line-through; font-weight:850}
-    .price .now{font-size:30px; font-weight:950; letter-spacing:-.5px}
+    .price .label{
+      font-size:var(--small);
+      color:var(--muted2);
+      font-weight:800;
+      margin-right:6px;
+    }
+    .price .was{
+      color:rgba(17,24,39,.45);
+      text-decoration:line-through;
+      font-weight:850;
+    }
+    .price .now{
+      font-size:30px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
     .price .tag{
       display:inline-flex;
       padding:7px 10px;
@@ -151,18 +173,49 @@
       font-size:12px;
       white-space:nowrap;
     }
-    .value-line{margin-top:10px; color:var(--muted); font-size:var(--small); line-height:1.4}
+    .value-line{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:var(--small);
+      line-height:1.4;
+    }
 
-    /* Sections grid */
+    /* Main sections - MOBILE FIRST: 1 column by default */
     .grid{
       display:grid;
-      grid-template-columns:1fr;     /* mobile-first */
+      grid-template-columns: 1fr;
       gap:14px;
       margin-top:16px;
     }
+    .col6,.col12{grid-column:auto}
+
+    h2{margin:0 0 10px; font-size:var(--h2)}
+    .muted{color:var(--muted); margin:0; font-size:15px; line-height:1.45}
+
+    /* Images (mobile-first) */
+    .section-image{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      border:1px solid var(--border);
+      box-shadow:0 8px 18px rgba(17,24,39,.08);
+      margin:12px 0 14px;
+      object-fit:cover;
+      background:#fff;
+    }
+
+    /* Two-up split inside a card (image + text) */
+    .split{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .split .section-image{margin:0}
 
     /* Phases */
-    .phases{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
+    .phases{display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px}
     .phase{
       background:#fff;
       border:1px solid var(--border);
@@ -178,37 +231,14 @@
     .q{margin:0 0 6px; font-weight:900}
     .a{margin:0; color:var(--muted); font-size:15px}
 
-    /* Images (natural, marketing-friendly) */
-    .img-card{
-      padding:0;
-      overflow:hidden;
+    /* Final */
+    .final{ text-align:center; padding:22px }
+    .footer{
+      margin-top:22px;
+      text-align:center;
+      color:rgba(17,24,39,.55);
+      font-size:12.5px;
     }
-    .img-banner{
-      width:100%;
-      height:140px;                 /* wide + short (mobile-first) */
-      display:block;
-      object-fit:cover;
-      object-position:center 55%;
-      border-bottom:1px solid var(--border);
-      background:#e5e7eb;
-    }
-    .img-inline{
-      width:100%;
-      height:220px;
-      display:block;
-      object-fit:cover;
-      object-position:center 45%;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:#e5e7eb;
-    }
-    .img-cap{
-      padding:12px 14px 14px;
-    }
-
-    /* Final / footer */
-    .final{text-align:center; padding:18px}
-    .footer{margin-top:18px; text-align:center; color:rgba(17,24,39,.55); font-size:12.5px}
 
     /* Sticky CTA */
     .sticky{
@@ -234,22 +264,26 @@
     .sticky-title{font-weight:950; letter-spacing:.15px}
     .sticky-sub{font-size:12.5px; color:var(--muted2)}
 
-    /* Desktop enhancements */
-    @media (min-width: 860px){
+    /* DESKTOP ENHANCEMENTS */
+    @media (min-width: 861px){
       .hero-inner{
         grid-template-columns: 1.25fr .75fr;
         padding:36px 18px 26px;
         gap:18px;
       }
-      .container{padding:22px 18px 0}
       .grid{
         grid-template-columns:repeat(12,1fr);
+        margin-top:18px;
       }
       .col6{grid-column:span 6}
       .col12{grid-column:span 12}
-      .phases{grid-template-columns:repeat(3,1fr); gap:12px}
-      .img-banner{height:160px}
-      .img-inline{height:260px}
+
+      .phases{grid-template-columns:repeat(3,1fr)}
+      .split{grid-template-columns: 1fr 1.15fr}
+    }
+
+    @media (max-width: 860px){
+      .sticky-sub{display:none}
     }
   </style>
 </head>
@@ -257,6 +291,7 @@
 <body>
   <div class="wrap">
 
+    <!-- HERO (no image, less clutter) -->
     <section class="hero" aria-label="StrongHER header">
       <div class="hero-inner">
         <div>
@@ -285,33 +320,162 @@
           <div class="meta">3 workouts/week • ~60 minutes • Demos included • Beginner-friendly</div>
         </div>
 
-        <!-- WHAT YOU GET (with wide/short image banner) -->
-        <div class="card img-card hero-card" id="included">
-          <!-- NOTE: spaces in filenames must be URL-encoded in HTML -->
-          <img class="img-banner" src="Leg%20extension%20example.jpg" alt="Leg extension exercise demonstration photo" loading="lazy" />
-          <div class="img-cap">
-            <h2>What you get</h2>
-            <ul class="list">
-              <li>8 weeks of progressive training (Foundation → Hypertrophy → Strength)</li>
-              <li>3 gym workouts per week (Push / Legs / Pull)</li>
-              <li>Warm-ups + core built in</li>
-              <li>Exercise demo library for every movement</li>
-              <li>Clear sets, reps, and rest guidance</li>
-            </ul>
-            <div class="cta-row" style="margin-top:14px">
-              <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Get Instant Access</a>
-            </div>
+        <div class="card hero-card" id="included">
+          <h2>What you get</h2>
+          <ul class="list">
+            <li>8 weeks of progressive training (Foundation → Hypertrophy → Strength)</li>
+            <li>3 gym workouts per week (Push / Legs / Pull)</li>
+            <li>Warm-ups + core built in</li>
+            <li>Exercise demo library for every movement</li>
+            <li>Clear sets, reps, and rest guidance</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Get Instant Access</a>
           </div>
         </div>
-
       </div>
     </section>
 
     <div class="container">
 
-      <!-- WHY THIS WORKS (image placed naturally, above text on mobile; can sit beside on desktop if you want later) -->
+      <!-- Trust-building (no testimonials) + IMAGE -->
       <section class="grid" style="margin-top:18px">
         <div class="card col12">
-          <h2>Why this works</h2>
+          <div class="split">
+            <!-- IMAGE: RDL -->
+            <img
+              class="section-image"
+              src="images/RDL example.png"
+              alt="Kettlebell RDL demonstration"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <h2>Why this works</h2>
+              <p class="muted">
+                Most women don’t need “more workouts.” They need a plan that removes guesswork.
+                StrongHER gives you structure, built-in progression, and exercise demos so you can walk into the gym knowing exactly what to do.
+              </p>
+              <div class="cta-row" style="margin-top:14px">
+                <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <img class="img-inline" src="RDL%20example.png" alt="Romanian deadlift with kettlebell demonstration photo" loading="lazy" style="margin
+      <!-- Who it's for / Outcomes + IMAGE -->
+      <section class="grid">
+        <div class="card col6">
+          <!-- IMAGE: Leg Extension -->
+          <img
+            class="section-image"
+            src="images/Leg extension example.jpg"
+            alt="Leg extension demonstration"
+            loading="lazy"
+            decoding="async"
+          />
+          <h2>This is for you if…</h2>
+          <ul class="list">
+            <li>You have basic gym access (dumbbells + common machines)</li>
+            <li>You want muscle + strength (not random “sweaty” workouts)</li>
+            <li>You want a plan that tells you exactly what to do</li>
+            <li>You want to feel confident in the weight room</li>
+          </ul>
+        </div>
+
+        <div class="card col6">
+          <h2>What changes in 8 weeks</h2>
+          <ul class="list">
+            <li>More confidence walking into the gym</li>
+            <li>Better form + stronger foundational lifts</li>
+            <li>Progress you can track week to week</li>
+            <li>A routine you can stick to</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Program structure -->
+      <section class="grid">
+        <div class="card col12">
+          <h2>How the 8 weeks are structured</h2>
+          <div class="phases">
+            <div class="phase">
+              <h3>Phase 1: Foundation (Weeks 1–2)</h3>
+              <p>Movement quality, confidence, and consistency.</p>
+            </div>
+            <div class="phase">
+              <h3>Phase 2: Hypertrophy Basics (Weeks 3–4)</h3>
+              <p>Muscle-building volume with clear progression.</p>
+            </div>
+            <div class="phase">
+              <h3>Phase 3: Strength + Hypertrophy (Weeks 5–8)</h3>
+              <p>Heavier lifts + higher intensity to finish strong.</p>
+            </div>
+          </div>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="grid">
+        <div class="card col12" id="faq">
+          <h2>Quick FAQs</h2>
+
+          <div class="faq-item">
+            <p class="q">Is this beginner-friendly?</p>
+            <p class="a">Yes. It’s built to progress you week by week with clear guidance and demos.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="q">Do I need a full gym?</p>
+            <p class="a">Basic gym access is ideal (dumbbells + common machines). Most commercial gyms work.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="q">How long are the workouts?</p>
+            <p class="a">About 60 minutes, 3 days per week.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="q">Is coaching included?</p>
+            <p class="a">StrongHER is self-guided. If you want 1:1 coaching, message Julie on Instagram.</p>
+          </div>
+
+          <div class="cta-row" style="margin-top:16px">
+            <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="grid">
+        <div class="card col12 final">
+          <h2>Ready to train with a real plan?</h2>
+          <p class="muted">Structure, progression, and gym confidence — built for women.</p>
+          <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Continue to Checkout</a>
+          <div class="meta" style="margin-top:10px">Instant access after purchase (if applicable)</div>
+        </div>
+      </section>
+
+      <div class="footer">
+        Disclaimer: Results vary by individual. Consult a professional if you have medical concerns.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Sticky CTA bar -->
+  <div class="sticky" aria-label="Sticky call to action">
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <div class="sticky-title">StrongHER — $50</div>
+        <div class="sticky-sub">8 weeks • 3x/week • Gym-based</div>
+      </div>
+      <a class="btn" href="https://kahunas.io/account/client/eb3a3115-c8e9-474e-ac77-6ae875799cf6/c8bcc6cc-5169-46d2-b310-119196d562a5" target="_blank" rel="noopener">Checkout</a>
+    </div>
+  </div>
+</body>
+</html>
